@@ -1,0 +1,171 @@
+[
+  {
+    "_id": {
+      "$oid": "6501000000000000000000c1"
+    },
+    "name": "TechSpace Belgrade Hub",
+    "city": "Beograd",
+    "address": "Kneza Miloša 35",
+    "description": "A modern coworking hub in the heart of Belgrade. Open 24/7 with high-speed internet, ergonomic furniture and a vibrant startup community.",
+    "companyId": {
+      "$oid": "6501000000000000000000a1"
+    },
+    "managerId": {
+      "$oid": "6501000000000000000000b2"
+    },
+    "pricePerHour": 5,
+    "status": "active",
+    "mainImage": "uploads/spaces/slika1.jpeg",
+    "images": [
+      "uploads/spaces/slika2.jpeg",
+      "uploads/spaces/slika3.jpeg",
+      "uploads/spaces/slika4.jpeg"
+    ],
+    "latitude": 44.8043,
+    "longitude": 20.4617,
+    "maxPenalties": 3,
+    "totalLikes": 48,
+    "totalDislikes": 4,
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000c2"
+    },
+    "name": "TechSpace Novi Sad",
+    "city": "Novi Sad",
+    "address": "Trg slobode 8",
+    "description": "Quiet and professional coworking space near the city center. Perfect for focused work and team meetings.",
+    "companyId": {
+      "$oid": "6501000000000000000000a1"
+    },
+    "managerId": {
+      "$oid": "6501000000000000000000b3"
+    },
+    "pricePerHour": 4,
+    "status": "active",
+    "mainImage": "uploads/spaces/slika5.jpeg",
+    "images": [
+      "uploads/spaces/slika6.jpeg",
+      "uploads/spaces/slika7.jpeg"
+    ],
+    "latitude": 45.2517,
+    "longitude": 19.8369,
+    "maxPenalties": 3,
+    "totalLikes": 35,
+    "totalDislikes": 2,
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000c3"
+    },
+    "name": "WorkHub Belgrade Central",
+    "city": "Beograd",
+    "address": "Makedonska 22",
+    "description": "Premium coworking in central Belgrade. Includes fully equipped conference rooms, private offices and a rooftop terrace.",
+    "companyId": {
+      "$oid": "6501000000000000000000a2"
+    },
+    "managerId": {
+      "$oid": "6501000000000000000000b4"
+    },
+    "pricePerHour": 8,
+    "status": "active",
+    "mainImage": "uploads/spaces/slika8.jpeg",
+    "images": [
+      "uploads/spaces/slika9.jpeg",
+      "uploads/spaces/slika10.jpeg",
+      "uploads/spaces/slika1.jpeg",
+      "uploads/spaces/slika2.jpeg"
+    ],
+    "latitude": 44.8137,
+    "longitude": 20.4607,
+    "maxPenalties": 2,
+    "totalLikes": 61,
+    "totalDislikes": 3,
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000c4"
+    },
+    "name": "TechSpace Niš",
+    "city": "Niš",
+    "address": "Ulica Kralja Milana 22",
+    "description": "The first premium coworking space in Niš. Community-driven environment with mentoring programs and networking events.",
+    "companyId": {
+      "$oid": "6501000000000000000000a1"
+    },
+    "managerId": {
+      "$oid": "6501000000000000000000b2"
+    },
+    "pricePerHour": 3,
+    "status": "active",
+    "mainImage": "uploads/spaces/slika3.jpeg",
+    "images": [
+      "uploads/spaces/slika4.jpeg",
+      "uploads/spaces/slika5.jpeg"
+    ],
+    "latitude": 43.3193,
+    "longitude": 21.8956,
+    "maxPenalties": 3,
+    "totalLikes": 22,
+    "totalDislikes": 1,
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000c5"
+    },
+    "name": "WorkHub Subotica",
+    "city": "Subotica",
+    "address": "Korzo 5",
+    "description": "Cozy coworking space in Subotica with Art Nouveau architecture. Ideal for creative professionals and remote workers.",
+    "companyId": {
+      "$oid": "6501000000000000000000a2"
+    },
+    "managerId": {
+      "$oid": "6501000000000000000000b4"
+    },
+    "pricePerHour": 3.5,
+    "status": "active",
+    "mainImage": "uploads/spaces/slika6.jpeg",
+    "images": [
+      "uploads/spaces/slika7.jpeg",
+      "uploads/spaces/slika8.jpeg",
+      "uploads/spaces/slika9.jpeg"
+    ],
+    "latitude": 46.1003,
+    "longitude": 19.6659,
+    "maxPenalties": 3,
+    "totalLikes": 29,
+    "totalDislikes": 2,
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  }
+]

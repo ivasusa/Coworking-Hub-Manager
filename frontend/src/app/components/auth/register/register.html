@@ -1,0 +1,129 @@
+<div class="auth-page">
+  <div class="auth-card auth-card--wide">
+    <h1 class="auth-title">Create account</h1>
+    <p class="auth-subtitle">Join the Coworking Hub network</p>
+
+    @if (message) {
+    <div class="alert alert--success">
+      {{ message }} <a routerLink="/login" class="link">Sign in</a>
+    </div>
+    }
+    @if (error) {
+    <div class="alert alert--error">{{ error }}</div>
+    }
+
+    @if (!message) {
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+      <div class="form-group">
+        <label class="form-label">Account type</label>
+        <div class="role-options">
+          <label class="role-option" [class.role-option--active]="form.value.role === 'member'">
+            <input type="radio" formControlName="role" value="member" class="role-radio" />
+            <span>Member</span>
+          </label>
+          <label class="role-option" [class.role-option--active]="form.value.role === 'manager'">
+            <input type="radio" formControlName="role" value="manager" class="role-radio" />
+            <span>Space Manager</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label">First name</label>
+          <input formControlName="firstName" type="text" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last name</label>
+          <input formControlName="lastName" type="text" class="form-input" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input formControlName="username" type="text" autocomplete="username" class="form-input" />
+        @if (form.get('username')?.invalid && form.get('username')?.touched) {
+        <p class="form-error">Username must be at least 3 characters.</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input formControlName="email" type="email" autocomplete="email" class="form-input" />
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+        <p class="form-error">Enter a valid email.</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Phone</label>
+        <input formControlName="phone" type="tel" placeholder="06xxxxxxxx" class="form-input" />
+        @if (form.get('phone')?.invalid && form.get('phone')?.touched) {
+        <p class="form-error">Phone must start with 06 and have 9 or 10 digits</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input formControlName="password" type="password" autocomplete="new-password" class="form-input" />
+        <p class="form-hint">8–12 chars, starts with letter, includes uppercase, number &amp; special char.</p>
+        @if (form.get('password')?.invalid && form.get('password')?.touched) {
+        <p class="form-error">Password does not meet requirements.</p>
+        }
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">
+          Profile picture <span class="form-label-hint">(optional, 100×100 – 300×300 px, JPG/PNG)</span>
+        </label>
+        <input type="file" accept=".jpg,.jpeg,.png" (change)="onFileChange($event)" class="file-input" />
+        @if (fileError) {
+        <p class="form-error">{{ fileError }}</p>
+        }
+        @if (selectedFile) {
+        <p class="form-hint" style="color: #15803d">{{ selectedFile.name }} selected</p>
+        }
+      </div>
+
+      @if (isManager) {
+      <hr class="form-divider" />
+      <p class="form-section-title">Company information</p>
+
+      <div class="form-group">
+        <label class="form-label">Company name</label>
+        <input formControlName="companyName" type="text" class="form-input" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Company address</label>
+        <input formControlName="companyAddress" type="text" class="form-input" />
+      </div>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label">Registration No. <span class="form-label-hint">(8 digits)</span></label>
+          <input formControlName="registrationNumber" type="text" maxlength="8" class="form-input" />
+          @if (form.get('registrationNumber')?.invalid && form.get('registrationNumber')?.touched) {
+          <p class="form-error">Must be exactly 8 digits.</p>
+          }
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tax ID (PIB) <span class="form-label-hint">(9 digits)</span></label>
+          <input formControlName="taxId" type="text" maxlength="9" class="form-input" />
+          @if (form.get('taxId')?.invalid && form.get('taxId')?.touched) {
+          <p class="form-error">Must be 9 digits, cannot start with 0.</p>
+          }
+        </div>
+      </div>
+      }
+
+      <button type="submit" [disabled]="loading" class="btn-primary btn-full">
+        {{ loading ? 'Submitting...' : 'Submit Registration' }}
+      </button>
+
+      <p class="auth-links">
+        Already have an account? <a routerLink="/login" class="link">Sign in</a>
+      </p>
+    </form>
+    }
+  </div>
+</div>

@@ -1,0 +1,219 @@
+.wrapper {
+  padding: 1rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.naslov {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.selektor-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.selektor-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .selektor-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.forma-label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.forma-select {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+}
+
+.select-disabled:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.kal-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background: white;
+  padding: 1rem;
+}
+
+.kal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.kal-podnaslov {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.kal-ime {
+  font-weight: 600;
+}
+
+.kal-tip {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: normal;
+}
+
+.week-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.nav-btn {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background: white;
+  cursor: pointer;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem 0;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.day-col {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  min-height: 7rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.day-col--past {
+  background: #f9fafb;
+}
+
+.day-col-header {
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.day-col-header--past {
+  background: #f3f4f6;
+}
+
+.day-weekday {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.day-number {
+  font-weight: bold;
+}
+
+.day-number--past {
+  color: #9ca3af;
+}
+
+.dan-rezervacije {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  flex: 1;
+}
+
+.dan-slobodan {
+  font-size: 0.625rem;
+  color: #d1d5db;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.chip {
+  border-radius: 0.375rem;
+  border: 1px solid;
+  padding: 0.25rem 0.375rem;
+  font-size: 0.625rem;
+  line-height: 1.2;
+}
+
+.chip-ime {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chip-vreme {
+  opacity: 0.75;
+}
+
+.chip-status {
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.legenda {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.leg-stavka {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.leg-tacka {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.25rem;
+}
+
+.leg-tacka--aktivan {
+  background: #dbeafe;
+  border: 1px solid #60a5fa;
+}
+
+.leg-tacka--potvrden {
+  background: #dcfce7;
+  border: 1px solid #4ade80;
+}
+
+.leg-tacka--noshow {
+  background: #fee2e2;
+  border: 1px solid #f87171;
+}

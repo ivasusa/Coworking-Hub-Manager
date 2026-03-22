@@ -1,0 +1,83 @@
+[
+  {
+    "_id": {
+      "$oid": "6501000000000000000000f1"
+    },
+    "memberId": {
+      "$oid": "6501000000000000000000b5"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c1"
+    },
+    "likeCount": 1,
+    "dislikeCount": 0,
+    "comments": [
+      {
+        "text": "Great space, very clean and fast internet!",
+        "createdAt": {
+          "$date": "2026-03-13T11:14:03.276Z"
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": "2026-03-13T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-13T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000f2"
+    },
+    "memberId": {
+      "$oid": "6501000000000000000000b5"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c3"
+    },
+    "likeCount": 1,
+    "dislikeCount": 0,
+    "comments": [
+      {
+        "text": "Premium experience, totally worth the price.",
+        "createdAt": {
+          "$date": "2026-03-18T11:14:03.276Z"
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": "2026-03-18T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-18T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000f3"
+    },
+    "memberId": {
+      "$oid": "6501000000000000000000b6"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c2"
+    },
+    "likeCount": 1,
+    "dislikeCount": 0,
+    "comments": [
+      {
+        "text": "Quiet and productive. Loved the view!",
+        "createdAt": {
+          "$date": "2026-03-16T11:14:03.276Z"
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": "2026-03-16T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-16T11:14:03.276Z"
+    }
+  }
+]

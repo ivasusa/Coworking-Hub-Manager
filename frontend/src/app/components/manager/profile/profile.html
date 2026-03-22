@@ -1,0 +1,112 @@
+<div class="wrapper">
+  <div class="profile-card">
+    <div class="card-header">
+      <div class="profil-identitet">
+        <img [src]="profileImageUrl" alt="Profile" class="avatar" />
+        <div>
+          <h1 class="ime">{{ user?.firstName }} {{ user?.lastName }}</h1>
+          <p class="korisnicko">@{{ user?.username }}</p>
+          <span class="role-badge">Manager</span>
+        </div>
+      </div>
+      @if (!editMode) {
+      <button (click)="editMode = true" class="link-btn link-btn--blue">Edit</button>
+      }
+      @if (editMode) {
+      <button (click)="editMode = false" class="link-btn link-btn--gray">Cancel</button>
+      }
+    </div>
+
+    @if (message) {
+    <div class="alert alert--success">{{ message }}</div>
+    }
+    @if (error) {
+    <div class="alert alert--error">{{ error }}</div>
+    }
+
+    @if (!editMode && user) {
+    <table class="info-tabla">
+      <tr class="info-red"><td class="info-label">Username</td><td class="info-val">{{ user.username }}</td></tr>
+      <tr class="info-red"><td class="info-label">Company</td><td class="info-val">{{ user.companyId?.name ?? '—' }}</td></tr>
+      <tr class="info-red"><td class="info-label">First name</td><td class="info-val">{{ user.firstName }}</td></tr>
+      <tr class="info-red"><td class="info-label">Last name</td><td class="info-val">{{ user.lastName }}</td></tr>
+      <tr class="info-red"><td class="info-label">Email</td><td class="info-val">{{ user.email }}</td></tr>
+      <tr><td class="info-label">Phone</td><td class="info-val">{{ user.phone }}</td></tr>
+    </table>
+    }
+    @if (editMode) {
+    <form [formGroup]="form" (ngSubmit)="saveProfile()" novalidate>
+      <div class="forma-grid">
+        <div>
+          <label class="forma-label">First name</label>
+          <input formControlName="firstName" type="text" class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">Last name</label>
+          <input formControlName="lastName" type="text" class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">Email</label>
+          <input formControlName="email" type="email" class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">Phone</label>
+          <input formControlName="phone" type="tel" placeholder="06xxxxxxxx" class="forma-input" />
+          @if (form.get('phone')?.invalid && form.get('phone')?.touched) {
+          <p class="greska-polje">Phone must start with 06 and have 9 or 10 digits</p>
+          }
+        </div>
+      </div>
+      <div class="forma-group">
+        <label class="forma-label">Change profile picture (100×100 – 300×300 px, JPG/PNG)</label>
+        <input type="file" accept=".jpg,.jpeg,.png" (change)="onFileChange($event)" class="file-input" />
+        @if (fileError) {
+        <p class="greska-polje">{{ fileError }}</p>
+        }
+      </div>
+      <div class="forma-akcije">
+        <button type="submit" [disabled]="saving" class="btn-sacuvaj">
+          {{ saving ? 'Saving...' : 'Save changes' }}
+        </button>
+        <button type="button" (click)="editMode = false" class="btn-otkazi">Cancel</button>
+      </div>
+    </form>
+    }
+  </div>
+
+  <div class="prostori-card">
+    <h2 class="prostori-naslov">My Spaces</h2>
+
+    @if (spaces.length === 0) {
+    <p class="prazno">No spaces yet.</p>
+    }
+
+    @if (spaces.length > 0) {
+    <div class="tabla-wrapper">
+      <table class="tabla">
+        <thead class="thead">
+          <tr>
+            <th class="th">Space name</th>
+            <th class="th">City</th>
+            <th class="th">Status</th>
+            <th class="th">Elements</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (s of spaces; track s._id) {
+          <tr class="red">
+            <td class="td-name">{{ s.name }}</td>
+            <td class="td">{{ s.city }}</td>
+            <td class="td">
+              <span class="status-badge" [class]="spaceStatusClass(s.status)">{{ s.status }}</span>
+            </td>
+            <td class="td-elem">{{ openElements(s) }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+  </div>
+
+</div>

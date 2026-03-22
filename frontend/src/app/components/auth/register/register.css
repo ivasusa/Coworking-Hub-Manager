@@ -1,0 +1,28 @@
+.role-options {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.role-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.role-option--active {
+  border-color: var(--color-accent);
+  background-color: #eff6ff;
+}
+
+.role-radio {
+  display: none;
+}

@@ -1,0 +1,211 @@
+.wrapper {
+  padding: 1rem;
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.naslov {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.kontrole-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.kontrole-red {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.forma-label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.forma-input {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.btn-dark {
+  background: #1f2937;
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-dark:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+}
+
+.greska-msg {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.izvestaj-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background: white;
+  overflow: hidden;
+}
+
+.izvestaj-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.izvestaj-mesec {
+  font-weight: 600;
+}
+
+.izvestaj-meta {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.prostor-blok {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.prostor-blok:last-child {
+  border-bottom: none;
+}
+
+.prostor-blok-header {
+  padding: 0.5rem 1rem;
+  background: #f9fafb;
+}
+
+.prostor-blok-ime {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.prostor-blok-grad {
+  font-weight: normal;
+  color: #9ca3af;
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+}
+
+.tabla {
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+}
+
+.thead-red {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9ca3af;
+  text-transform: uppercase;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.th-levo {
+  text-align: left;
+  padding: 0.5rem 1rem;
+}
+
+.th-desno {
+  text-align: right;
+  padding: 0.5rem 0.75rem;
+}
+
+.th-util {
+  padding: 0.5rem 1rem;
+  width: 11rem;
+}
+
+.red {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.red:hover {
+  background: #f9fafb;
+}
+
+.td-name {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+.td-tip {
+  padding: 0.5rem 0.75rem;
+  color: #6b7280;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.td-desno {
+  padding: 0.5rem 0.75rem;
+  text-align: right;
+}
+
+.td-sivkasto {
+  color: #9ca3af;
+}
+
+.td-util {
+  padding: 0.5rem 1rem;
+}
+
+.util-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.util-traka {
+  flex: 1;
+  background: #e5e7eb;
+  border-radius: 9999px;
+  height: 0.5rem;
+}
+
+.util-fill {
+  height: 0.5rem;
+  border-radius: 9999px;
+}
+
+.util-proc {
+  font-size: 0.75rem;
+  font-weight: 600;
+  width: 3rem;
+  text-align: right;
+}
+
+.prazno {
+  text-align: center;
+  padding: 2rem 0;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}

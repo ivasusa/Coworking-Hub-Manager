@@ -1,0 +1,218 @@
+<div class="wrapper">
+
+  <div class="top-bar">
+    <h1 class="naslov">My Spaces</h1>
+    <button (click)="showCreateForm = !showCreateForm" class="btn-primary">
+      {{ showCreateForm ? 'Cancel' : '+ New Space' }}
+    </button>
+  </div>
+
+  @if (showCreateForm) {
+  <div class="forma-card">
+    <h2 class="forma-naslov">Create new space</h2>
+
+    @if (createMsg) {
+    <div class="alert alert--success">{{ createMsg }}</div>
+    }
+    @if (createError) {
+    <div class="alert alert--error">{{ createError }}</div>
+    }
+
+    <form [formGroup]="createForm" (ngSubmit)="submitCreate()" novalidate>
+      <div class="forma-grid">
+        <div>
+          <label class="forma-label">Space name *</label>
+          <input formControlName="name" type="text" class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">City *</label>
+          <input formControlName="city" type="text" class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">Address *</label>
+          <input formControlName="address" type="text" class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">Price per hour (€) *</label>
+          <input formControlName="pricePerHour" type="number" min="0" step="0.5" noNegative
+                 class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">Latitude *</label>
+          <input formControlName="latitude" type="number" step="any" class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">Longitude *</label>
+          <input formControlName="longitude" type="number" step="any" class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">Max penalties before ban *</label>
+          <input formControlName="maxPenalties" type="number" min="1" noNegative class="forma-input" />
+        </div>
+        <div>
+          <label class="forma-label">Open space desks (min 5) *</label>
+          <input formControlName="deskCount" type="number" min="5" noNegative class="forma-input" />
+        </div>
+      </div>
+      <div class="forma-group">
+        <label class="forma-label">Description</label>
+        <textarea formControlName="description" rows="3" class="forma-textarea"></textarea>
+      </div>
+      <button type="submit" [disabled]="creating || createForm.invalid" class="btn-dark">
+        {{ creating ? 'Creating...' : 'Create space' }}
+      </button>
+    </form>
+  </div>
+  }
+
+  <div class="forma-card">
+    <div class="json-header">
+      <div>
+        <h2 class="forma-naslov">Import from JSON</h2>
+        <p class="json-hint">Quickly configure a space by uploading a .json file</p>
+      </div>
+      <button (click)="showJsonForm = !showJsonForm" class="btn-siv">
+        {{ showJsonForm ? 'Hide' : 'Import JSON' }}
+      </button>
+    </div>
+
+    @if (showJsonForm) {
+    <div class="json-telo">
+      @if (jsonMsg) {
+      <div class="alert alert--success">{{ jsonMsg }}</div>
+      }
+      @if (jsonError) {
+      <div class="alert alert--error">{{ jsonError }}</div>
+      }
+
+      <div class="json-preview">
+        <p class="json-preview-naslov">Expected JSON format:</p>
+<pre>&#123;
+  "name": "My Space",
+  "city": "Belgrade",
+  "address": "Knez Mihailova 1",
+  "description": "Optional description",
+  "pricePerHour": 5,
+  "latitude": 44.8176,
+  "longitude": 20.4569,
+  "maxPenalties": 3,
+  "deskCount": 10,
+  "offices": [
+    &#123; "name": "Office A", "deskCount": 4 &#125;
+  ],
+  "conferences": [
+    &#123; "name": "Big Room", "equipment": "Projector, whiteboard" &#125;
+  ]
+&#125;</pre>
+      </div>
+
+      <div>
+        <label class="forma-label">Select .json file</label>
+        <input type="file" accept=".json" (change)="onJsonFileChange($event)"
+               [disabled]="jsonImporting" class="file-input" />
+      </div>
+      @if (jsonImporting) {
+      <p class="uvoz-msg">Importing...</p>
+      }
+    </div>
+    }
+  </div>
+
+  @if (spaces.length === 0 && !showCreateForm) {
+  <p class="prazno">No spaces yet. Click "+ New Space" to get started.</p>
+  }
+
+  @for (space of spaces; track space._id) {
+  <div class="prostor-item">
+
+    <div class="prostor-header">
+      <div>
+        <h2 class="prostor-ime">{{ space.name }}</h2>
+        <p class="prostor-adresa">{{ space.address }}, {{ space.city }}</p>
+        <p class="prostor-cena">€{{ space.pricePerHour }}/hr</p>
+      </div>
+      <span class="status-badge" [class]="statusClass(space.status)">{{ space.status }}</span>
+    </div>
+
+    <div class="elementi-panel">
+      <p class="elementi-label">Elements</p>
+
+      @if (openEl(space)) {
+      <p class="el-red">▣ Open space — {{ openEl(space)?.deskCount }} desks</p>
+      }
+      @for (o of offices(space); track o._id) {
+      <p class="el-red">◻ Office "{{ o.name }}" — {{ o.deskCount }} desks</p>
+      }
+      @for (c of conferences(space); track c._id) {
+      <p class="el-red">◈ Conference "{{ c.name }}"
+        @if (c.equipment) { <span class="el-oprema">· {{ c.equipment }}</span> }
+      </p>
+      }
+      @if (elements(space).length === 1) {
+      <p class="elementi-prazno">No offices or conference rooms added yet.</p>
+      }
+    </div>
+
+    <div class="dodaj-akcije">
+      @if (addingElement[space._id] !== 'office') {
+      <button (click)="startAdding(space._id, 'office')" class="btn-dodaj-kancelariju">+ Add office</button>
+      }
+      @if (addingElement[space._id] !== 'conference') {
+      <button (click)="startAdding(space._id, 'conference')" class="btn-dodaj-salu">+ Add conference room</button>
+      }
+    </div>
+
+    @if (elementMsg[space._id]) { <p class="msg-ok">{{ elementMsg[space._id] }}</p> }
+    @if (elementError[space._id]) { <p class="msg-err">{{ elementError[space._id] }}</p> }
+
+    @if (addingElement[space._id] === 'office') {
+    <div class="forma-kancelarija">
+      <p class="forma-el-naslov forma-el-naslov--kancelarija">New office</p>
+      <form [formGroup]="officeForm" (ngSubmit)="submitOffice(space._id)" novalidate
+            class="forma-el-red">
+        <div>
+          <label class="forma-label-xs">Unique name *</label>
+          <input formControlName="name" type="text" placeholder="e.g. Office A"
+                 class="forma-input forma-input--srednji" />
+        </div>
+        <div>
+          <label class="forma-label-xs">Desks *</label>
+          <input formControlName="deskCount" type="number" min="1" placeholder="4" noNegative
+                 class="forma-input forma-input--mali" />
+        </div>
+        <button type="submit" [disabled]="officeForm.invalid || addingInProgress[space._id]"
+                class="btn-ljubicasti">Add</button>
+        <button type="button" (click)="cancelAdding(space._id)" class="btn-otkazi">Cancel</button>
+      </form>
+    </div>
+    }
+
+    @if (addingElement[space._id] === 'conference') {
+    <div class="forma-sala">
+      <p class="forma-el-naslov forma-el-naslov--sala">New conference room (10–12 seats)</p>
+      <form [formGroup]="conferenceForm" (ngSubmit)="submitConference(space._id)" novalidate class="sala-polja">
+        <div>
+          <label class="forma-label-xs">Unique name *</label>
+          <input formControlName="name" type="text" placeholder="e.g. Big Meeting Room"
+                 class="forma-input forma-input--siri" />
+        </div>
+        <div>
+          <label class="forma-label-xs">Equipment (max 300 characters)</label>
+          <textarea formControlName="equipment" rows="2"
+                    placeholder="e.g. Projector, whiteboard"
+                    class="forma-textarea"></textarea>
+          <p class="char-br">{{ conferenceForm.value.equipment?.length ?? 0 }}/300</p>
+        </div>
+        <div class="forma-akcije">
+          <button type="submit" [disabled]="conferenceForm.invalid || addingInProgress[space._id]"
+                  class="btn-zutica">Add</button>
+          <button type="button" (click)="cancelAdding(space._id)" class="btn-otkazi">Cancel</button>
+        </div>
+      </form>
+    </div>
+    }
+
+  </div>
+  }
+
+</div>

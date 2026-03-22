@@ -1,0 +1,229 @@
+<div class="wrapper">
+
+  <a routerLink="/" class="back-link">← Back to home</a>
+
+  @if (loading) {
+  <p class="loading">Loading...</p>
+  }
+  @if (error) {
+  <p class="greska">{{ error }}</p>
+  }
+
+  @if (space && !loading) {
+  <div class="space-card">
+
+    <img [src]="imageUrl(selectedImage)" [alt]="space.name" class="main-img" />
+
+    @if (thumbnails.length > 1) {
+    <div class="thumbs">
+      @for (img of thumbnails; track img) {
+      <button (click)="selectImage(img)"
+              [class.ring-2]="selectedImage === img"
+              [class.ring-blue-500]="selectedImage === img"
+              class="thumb-btn">
+        <img [src]="imageUrl(img)" class="thumb-img" />
+      </button>
+      }
+    </div>
+    }
+
+    <div class="info-box">
+      <div class="info-header">
+        <div>
+          <h1 class="naziv">{{ space.name }}</h1>
+          <p class="adresa">{{ space.address }}, {{ space.city }}</p>
+        </div>
+        <div class="ocene">
+          <span class="lajk">👍 {{ space.totalLikes }}</span>
+          <span class="dislajk">👎 {{ space.totalDislikes }}</span>
+        </div>
+      </div>
+
+      <table class="info-tabla">
+        <tr class="info-red">
+          <td class="info-label">Company</td>
+          <td class="info-val">{{ space.companyId?.name }}</td>
+        </tr>
+        <tr class="info-red">
+          <td class="info-label">Manager</td>
+          <td class="info-val">{{ space.managerId?.firstName }} {{ space.managerId?.lastName }}</td>
+        </tr>
+        <tr class="info-red">
+          <td class="info-label">Price/hour</td>
+          <td class="info-val">€ {{ space.pricePerHour }}</td>
+        </tr>
+        <tr>
+          <td class="info-label">City</td>
+          <td class="info-val">{{ space.city }}</td>
+        </tr>
+      </table>
+
+      @if (space.description) {
+      <p class="opis">{{ space.description }}</p>
+      }
+    </div>
+
+    <div class="mapa-blok">
+      <p class="mapa-label">Location</p>
+      <div id="space-map" class="mapa"></div>
+    </div>
+
+    @if (calendarItems.length > 0) {
+    <div class="kalendar">
+
+      <div class="kal-header">
+        <div>
+          <p class="kal-naslov">Availability calendar</p>
+          @if (activeItem) {
+          <p class="kal-element">{{ activeItem.name }} ({{ activeItem.type }})</p>
+          }
+        </div>
+        @if (calendarItems.length > 1) {
+        <div class="nav-el">
+          <button (click)="prevElement()" [disabled]="activIndex === 0"
+                  class="nav-btn">← Prev</button>
+          <span class="nav-br">{{ activIndex + 1 }} / {{ calendarItems.length }}</span>
+          <button (click)="nextElement()" [disabled]="activIndex === calendarItems.length - 1"
+                  class="nav-btn">Next →</button>
+        </div>
+        }
+      </div>
+
+      <div class="week-nav">
+        <button (click)="prevWeek()" class="nav-btn">← Prev week</button>
+        <span>{{ daysOfWeek[0] | date:'d MMM' }} – {{ daysOfWeek[6] | date:'d MMM yyyy' }}</span>
+        <button (click)="nextWeek()" class="nav-btn">Next week →</button>
+      </div>
+
+      @if (!calendarLoading) {
+      <div class="week-grid">
+        @for (day of daysOfWeek; track day) {
+        <div (click)="clickDay(day)"
+             [class.day-busy]="dayIsOccupied(day)"
+             [class.day-free]="!dayIsOccupied(day) && !dayIsPast(day)"
+             [class.day-past]="dayIsPast(day)"
+             [class.day-clickable]="!dayIsOccupied(day) && !dayIsPast(day)"
+             [class.day-blocked]="dayIsOccupied(day) || dayIsPast(day)"
+             [class.ring-2]="chosenDay === (day | date:'yyyy-MM-dd')"
+             [class.ring-blue-500]="chosenDay === (day | date:'yyyy-MM-dd')"
+             class="day-cell">
+          <p class="day-weekday">{{ day | date:'EEE' }}</p>
+          <p class="day-number">{{ day | date:'d' }}</p>
+          @if (dayIsOccupied(day)) {
+          <p class="day-status-busy">Busy</p>
+          }
+          @if (!dayIsOccupied(day) && !dayIsPast(day)) {
+          <p class="day-status-free">Free</p>
+          }
+        </div>
+        }
+      </div>
+      }
+
+      @if (calendarLoading) {
+      <p class="loading-sm">Loading calendar...</p>
+      }
+
+      @if (isLoggedIn && chosenDay) {
+      <div class="forma-rez">
+        <p class="rez-naslov">Reserve {{ activeItem?.name }}</p>
+        <p class="rez-datum">Date: <strong>{{ chosenDay }}</strong></p>
+        <div class="vreme-polja">
+          <div>
+            <label class="vreme-label">Start time</label>
+            <input type="time" [(ngModel)]="startHour" class="vreme-input" />
+          </div>
+          <div>
+            <label class="vreme-label">End time</label>
+            <input type="time" [(ngModel)]="endHour" class="vreme-input" />
+          </div>
+        </div>
+        <button (click)="submitReservation()" class="btn-potvrdi">
+          Confirm reservation
+        </button>
+        @if (bookMsg) {
+        <p class="msg-ok">{{ bookMsg }}</p>
+        }
+        @if (bookErr) {
+        <p class="msg-err">{{ bookErr }}</p>
+        }
+      </div>
+      }
+
+      @if (!isLoggedIn) {
+      <p class="login-hint">
+        <a routerLink="/login" class="login-link">Log in</a> to make a reservation.
+      </p>
+      }
+
+    </div>
+    }
+
+    @if (calendarItems.length === 0 && !loading) {
+    <p class="nema-elem">No available elements match your search criteria.</p>
+    }
+
+    <div class="recenzije">
+      <p class="rec-naslov">Reviews</p>
+
+      <div class="rec-dugmad">
+        <button (click)="like()" [disabled]="!userCanReview"
+                class="btn-rec"
+                [ngClass]="userCanReview ? 'btn-like' : 'btn-disabled'">
+          👍 {{ space.totalLikes }}
+        </button>
+        <button (click)="dislike()" [disabled]="!userCanReview"
+                class="btn-rec"
+                [ngClass]="userCanReview ? 'btn-dislike' : 'btn-disabled'">
+          👎 {{ space.totalDislikes }}
+        </button>
+      </div>
+
+      @if (isLoggedIn && numConfirmed === 0) {
+      <p class="rec-napomena">
+        You need at least one confirmed reservation to leave a review.
+      </p>
+      }
+
+      @if (userCanReview) {
+      <div class="komentar-forma">
+        <textarea [(ngModel)]="newCommentText" rows="2" placeholder="Leave a comment..."
+                  class="komentar-tekst"></textarea>
+        <button (click)="submitComment()" [disabled]="!newCommentText.trim()" class="dugme-kom"> Post comment</button>
+      </div>
+      }
+
+      @if (reviewSuccessMsg) { <p class="msg-ok">{{ reviewSuccessMsg }}</p> }
+
+      @if (reviewErrMsg) { <p class="msg-err">{{ reviewErrMsg }}</p> }
+
+      @if (reviewList.length > 0) {
+      <p class="kom-heading">Last 10 comments</p>
+      <div class="kom-lista">
+        @for (c of reviewList; track c.createdAt) {
+        <div class="komentar"
+             [style.border-left]="isMyComment(c.memberId) ? '4px solid #3b82f6' : ''">
+          <div class="kom-header">
+            <span class="kom-autor">{{ c.username }}</span>
+            <span class="kom-datum">{{ c.createdAt | date:'d MMM yyyy, HH:mm' }}</span>
+          </div>
+          <p class="kom-tekst">{{ c.text }}</p>
+        </div>
+        }
+      </div>
+      }
+
+      @if (reviewList.length === 0) {
+      <p class="nema-kom">No comments yet.</p>
+      }
+
+      @if (!isLoggedIn) {
+      <p class="login-hint">
+        <a routerLink="/login" class="login-link">Log in</a> to leave a review.
+      </p>
+      }
+    </div>
+
+  </div>
+  }
+</div>

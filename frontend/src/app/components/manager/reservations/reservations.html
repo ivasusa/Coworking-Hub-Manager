@@ -1,0 +1,81 @@
+<div class="wrapper">
+  <div class="top-bar">
+    <h1 class="naslov">Reservations</h1>
+    <button (click)="load()" class="btn-refresh">Refresh</button>
+  </div>
+
+  @if (loading) {
+  <p class="info-txt">Loading...</p>
+  }
+
+  @if (!loading && reservations.length === 0) {
+  <p class="info-txt">No reservations found.</p>
+  }
+
+  @if (!loading && reservations.length > 0) {
+  <div class="tabla-wrapper">
+    <table class="tabla">
+      <thead class="thead">
+        <tr>
+          <th class="th">Member</th>
+          <th class="th">Space</th>
+          <th class="th">Element</th>
+          <th class="th">Start</th>
+          <th class="th">End</th>
+          <th class="th">Status</th>
+          <th class="th"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of reservations; track r._id) {
+        <tr class="red">
+          <td class="td">
+            {{ r.memberId?.firstName }} {{ r.memberId?.lastName }}
+            <span class="td-sub">{{ r.memberId?.username }}</span>
+          </td>
+          <td class="td">
+            {{ r.spaceId?.name }}
+            <span class="td-sub">{{ r.spaceId?.city }}</span>
+          </td>
+          <td class="td">
+            {{ r.elementId?.name }}
+            <span class="td-sub">{{ r.elementId?.type }}</span>
+          </td>
+          <td class="td td-nowrap">
+            {{ r.startTime | date:'d MMM yyyy' }}<br/>
+            <span class="td-sub">{{ r.startTime | date:'HH:mm' }}</span>
+          </td>
+          <td class="td td-nowrap">
+            {{ r.endTime | date:'d MMM yyyy' }}<br/>
+            <span class="td-sub">{{ r.endTime | date:'HH:mm' }}</span>
+          </td>
+          <td class="td">
+            <span class="status-badge" [class]="statusClass(r.status)">{{ r.status }}</span>
+            @if (actionMsg[r._id]) { <p class="akcija-msg akcija-msg--ok">{{ actionMsg[r._id] }}</p> }
+            @if (actionError[r._id]) { <p class="akcija-msg akcija-msg--err">{{ actionError[r._id] }}</p> }
+          </td>
+          <td class="td">
+            @if (r.status === 'active') {
+            <div class="akcija-dugmad">
+              <button (click)="confirm(r)" [disabled]="!canAct(r) || inProgress[r._id]"
+                      class="btn-potvrdi">
+                Confirm
+              </button>
+              <button (click)="noShow(r)" [disabled]="!canAct(r) || inProgress[r._id]"
+                      class="btn-noshow">
+                No Show
+              </button>
+            </div>
+            @if (!canAct(r)) {
+            <p class="akcija-hint">Available 10 min after start</p>
+            }
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+
+</div>

@@ -1,0 +1,22 @@
+[
+  {
+    "_id": {
+      "$oid": "6501000000000000000000a1"
+    },
+    "name": "TechSpace Inc",
+    "address": "Kneza Miloša 35, Beograd",
+    "registrationNumber": "12345678",
+    "taxId": "123456789",
+    "managerCount": 2
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000a2"
+    },
+    "name": "WorkHub Co",
+    "address": "42 Business Avenue, Novi Sad",
+    "registrationNumber": "87654321",
+    "taxId": "987654321",
+    "managerCount": 1
+  }
+]

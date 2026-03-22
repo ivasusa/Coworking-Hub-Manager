@@ -1,0 +1,168 @@
+<div class="wrapper">
+
+  <div class="top-bar">
+    <h1 class="naslov">Admin Dashboard</h1>
+    <span class="admin-label">Logged in as Administrator</span>
+  </div>
+
+  @if (message) {
+  <div class="alert alert--success">{{ message }}</div>
+  }
+  @if (error) {
+  <div class="alert alert--error">{{ error }}</div>
+  }
+
+  <div class="tabovi">
+    <button (click)="activeTab = 'pending'"
+            [class.tab--active]="activeTab === 'pending'"
+            class="tab-btn">
+      Pending users
+      @if (pendingUsers.length) {
+      <span class="tab-badge tab-badge--amber">{{ pendingUsers.length }}</span>
+      }
+    </button>
+    <button (click)="activeTab = 'spaces'"
+            [class.tab--active]="activeTab === 'spaces'"
+            class="tab-btn">
+      Pending spaces
+      @if (pendingSpaces.length) {
+      <span class="tab-badge tab-badge--blue">{{ pendingSpaces.length }}</span>
+      }
+    </button>
+    <button (click)="activeTab = 'all'"
+            [class.tab--active]="activeTab === 'all'"
+            class="tab-btn">All users</button>
+    <button (click)="activeTab = 'stats'"
+            [class.tab--active]="activeTab === 'stats'"
+            class="tab-btn">Statistics</button>
+  </div>
+
+  @if (activeTab === 'pending') {
+  <div>
+    @if (pendingUsers.length === 0) {
+    <p class="prazno">No pending registration requests.</p>
+    }
+
+    @if (pendingUsers.length > 0) {
+    <div class="lista-karti">
+      @for (user of pendingUsers; track user._id) {
+      <div class="korisnik-card">
+        <img [src]="imageUrl(user.profileImage)" alt="avatar" class="avatar" />
+        <div class="korisnik-info">
+          <div class="korisnik-identitet">
+            <span class="korisnik-ime">{{ user.firstName }} {{ user.lastName }}</span>
+            <span class="korisnik-username">@{{ user.username }}</span>
+            <span class="role-badge" [class]="user.role === 'manager' ? 'role-badge--manager' : 'role-badge--default'">
+              {{ user.role }}
+            </span>
+          </div>
+          <p class="korisnik-kontakt">{{ user.email }} · {{ user.phone }}</p>
+          @if (user.companyId) {
+          <p class="korisnik-firma">
+            Company: <span class="firma-naziv">{{ user.companyId.name }}</span>
+            · Reg: {{ user.companyId.registrationNumber }}
+            · PIB: {{ user.companyId.taxId }}
+          </p>
+          }
+        </div>
+        <div class="akcije">
+          <button (click)="approve(user._id)" class="btn-odobri">Approve</button>
+          <button (click)="reject(user._id)" class="btn-odbij">Reject</button>
+        </div>
+      </div>
+      }
+    </div>
+    }
+  </div>
+  }
+
+  @if (activeTab === 'spaces') {
+  <div>
+    @if (pendingSpaces.length === 0) {
+    <p class="prazno">No spaces waiting for approval.</p>
+    }
+
+    @if (pendingSpaces.length > 0) {
+    <div class="lista-karti">
+      @for (space of pendingSpaces; track space._id) {
+      <div class="prostor-card">
+        <div class="prostor-info">
+          <div class="prostor-naslov-red">
+            <span class="prostor-ime">{{ space.name }}</span>
+            <span class="pending-badge">pending</span>
+          </div>
+          <p class="prostor-adresa">{{ space.address }}, {{ space.city }}</p>
+          <p class="prostor-cena">€{{ space.pricePerHour }}/hr</p>
+          <div class="prostor-meta">
+            @if (space.companyId) {
+            <span>Company: <span class="meta-val">{{ space.companyId.name }}</span></span>
+            }
+            @if (space.managerId) {
+            <span>Manager: <span class="meta-val">{{ space.managerId.firstName }} {{ space.managerId.lastName }}</span></span>
+            }
+          </div>
+          @if (space.description) {
+          <p class="prostor-opis">{{ space.description }}</p>
+          }
+        </div>
+        <button (click)="approveSpace(space._id)" class="btn-odobri">Approve</button>
+      </div>
+      }
+    </div>
+    }
+  </div>
+  }
+
+  @if (activeTab === 'all') {
+  <div class="tabla-wrapper">
+    <table class="tabla">
+      <thead class="thead">
+        <tr>
+          <th class="th">User</th>
+          <th class="th">Email</th>
+          <th class="th">Role</th>
+          <th class="th">Status</th>
+          <th class="th"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of allUsers; track user._id) {
+        <tr class="red">
+          <td class="td">
+            <div class="user-cell">
+              <img [src]="imageUrl(user.profileImage)" alt="" class="avatar-sm" />
+              <span class="cell-ime">{{ user.firstName }} {{ user.lastName }}</span>
+              <span class="cell-username">@{{ user.username }}</span>
+            </div>
+          </td>
+          <td class="td td-sivo">{{ user.email }}</td>
+          <td class="td td-cap">{{ user.role }}</td>
+          <td class="td">
+            <span class="status-badge" [class]="statusClass(user.status)">{{ user.status }}</span>
+          </td>
+          <td class="td">
+            @if (user.role !== 'admin') {
+            <button (click)="deleteUser(user._id)" class="btn-brisi">Delete</button>
+            }
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+
+  @if (activeTab === 'stats') {
+  <div class="stats-grid">
+    <div class="stat-card">
+      <p class="stat-naslov">Popularity — reservations per space</p>
+      <canvas baseChart [data]="popularityData" [options]="chartOptions" type="bar"></canvas>
+    </div>
+    <div class="stat-card">
+      <p class="stat-naslov">Revenue (€) per space</p>
+      <canvas baseChart [data]="revenueData" [options]="chartOptions" type="bar"></canvas>
+    </div>
+  </div>
+  }
+
+</div>

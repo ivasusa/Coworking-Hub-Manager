@@ -1,0 +1,464 @@
+.wrapper {
+  padding: 1rem;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.back-link {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem 0;
+  color: #9ca3af;
+}
+
+.greska {
+  text-align: center;
+  padding: 4rem 0;
+  color: #ef4444;
+}
+
+.loading-sm {
+  text-align: center;
+  padding: 1.5rem 0;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.space-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background: white;
+  margin-top: 1rem;
+}
+
+.main-img {
+  width: 100%;
+  height: 16rem;
+  object-fit: cover;
+  border-radius: 0.375rem 0.375rem 0 0;
+}
+
+.thumbs {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  overflow-x: auto;
+  background: #f9fafb;
+}
+
+.thumb-btn {
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.375rem;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.thumb-btn.ring-2 {
+  outline: 2px solid;
+}
+
+.thumb-btn.ring-blue-500 {
+  outline-color: #3b82f6;
+}
+
+.thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info-box {
+  padding: 1rem;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.naziv {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.adresa {
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.ocene {
+  font-size: 0.875rem;
+}
+
+.lajk {
+  color: #15803d;
+  font-weight: 600;
+  margin-right: 0.75rem;
+}
+
+.dislajk {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.info-tabla {
+  font-size: 0.875rem;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.info-red {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.info-label {
+  padding: 0.5rem 0;
+  color: #6b7280;
+  width: 8rem;
+}
+
+.info-val {
+  padding: 0.5rem 0;
+  font-weight: 500;
+}
+
+.opis {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+.mapa-blok {
+  padding: 0 1rem 1rem;
+}
+
+.mapa-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.mapa {
+  width: 100%;
+  height: 22rem;
+  border-radius: 0.375rem;
+  border: 1px solid #e5e7eb;
+}
+
+.kalendar {
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.kal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.kal-naslov {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.kal-element {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.nav-el {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.nav-br {
+  color: #6b7280;
+}
+
+.week-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.nav-btn {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.75rem;
+  background: white;
+  cursor: pointer;
+}
+
+.nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+
+.day-cell {
+  border-radius: 0.375rem;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  user-select: none;
+}
+
+.day-busy { background: #fee2e2; }
+.day-free { background: #f0fdf4; }
+.day-past { background: #f3f4f6; }
+.day-clickable { cursor: pointer; }
+.day-blocked { cursor: not-allowed; }
+
+.day-cell.ring-2 {
+  outline: 2px solid;
+}
+
+.day-cell.ring-blue-500 {
+  outline-color: #3b82f6;
+}
+
+.day-weekday {
+  font-weight: 500;
+}
+
+.day-number {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.day-status-busy {
+  color: #ef4444;
+}
+
+.day-status-free {
+  color: #15803d;
+}
+
+.forma-rez {
+  margin-top: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  background: #f9fafb;
+}
+
+.rez-naslov {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.rez-datum {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-bottom: 0.75rem;
+}
+
+.vreme-polja {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.vreme-label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.vreme-input {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.btn-potvrdi {
+  background: #2563eb;
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+}
+
+.login-hint {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.login-link {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.recenzije {
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.rec-naslov {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.rec-dugmad {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.btn-rec {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  background: white;
+  cursor: pointer;
+}
+
+.btn-like {
+  border-color: #4ade80;
+  color: #15803d;
+}
+
+.btn-dislike {
+  border-color: #f87171;
+  color: #dc2626;
+}
+
+.btn-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.rec-napomena {
+  font-size: 0.75rem;
+  color: #d97706;
+  margin-bottom: 0.75rem;
+}
+
+.komentar-forma {
+  margin-bottom: 1rem;
+}
+
+.komentar-tekst {
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.dugme-kom {
+  margin-top: 0.5rem;
+  background: #2563eb;
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.375rem 1rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+}
+
+.dugme-kom:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.msg-ok {
+  color: #16a34a;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.msg-err {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.kom-heading {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.kom-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.komentar {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  background: #f9fafb;
+}
+
+.kom-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.kom-autor {
+  font-weight: 500;
+}
+
+.kom-datum {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.kom-tekst {
+  color: #4b5563;
+}
+
+.nema-kom {
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.nema-elem {
+  padding: 0 1rem 1rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}

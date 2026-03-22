@@ -1,0 +1,19 @@
+{
+  "name": "My Hub Belgrade",
+  "city": "Belgrade",
+  "address": "Kajuhova 6",
+  "description": "Modern coworking space in the heart of Kotez, with fast internet and great coffee.",
+  "pricePerHour": 4.5,
+  "latitude": 44.8176,
+  "longitude": 20.4569,
+  "maxPenalties": 3,
+  "deskCount": 20,
+  "offices": [
+    { "name": "Office A", "deskCount": 4 },
+    { "name": "Office B", "deskCount": 6 }
+  ],
+  "conferences": [
+    { "name": "Main Conference Room", "equipment": "Projector, whiteboard, video conferencing system" },
+    { "name": "Small Meeting Room", "equipment": "TV screen, whiteboard" }
+  ]
+}

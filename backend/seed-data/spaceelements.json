@@ -1,0 +1,145 @@
+[
+  {
+    "_id": {
+      "$oid": "6501000000000000000000d1"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c1"
+    },
+    "type": "open",
+    "name": "Open Space",
+    "deskCount": 20
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000d2"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c1"
+    },
+    "type": "office",
+    "name": "Office Alpha",
+    "deskCount": 4
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000d3"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c1"
+    },
+    "type": "office",
+    "name": "Office Beta",
+    "deskCount": 6
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000d4"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c1"
+    },
+    "type": "conference",
+    "name": "Meeting Room A",
+    "equipment": "Projector, whiteboard, video conferencing system, 12 ergonomic chairs"
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000d5"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c2"
+    },
+    "type": "open",
+    "name": "Open Floor",
+    "deskCount": 15
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000d6"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c2"
+    },
+    "type": "office",
+    "name": "Office One",
+    "deskCount": 3
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000d7"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c2"
+    },
+    "type": "conference",
+    "name": "Conference Room 1",
+    "equipment": "HDTV screen, video call setup, whiteboard"
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000d8"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c3"
+    },
+    "type": "open",
+    "name": "Ground Floor Open",
+    "deskCount": 30
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000d9"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c3"
+    },
+    "type": "conference",
+    "name": "Boardroom",
+    "equipment": "Premium AV system, smart whiteboard, video conferencing, catering service available"
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000da"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c4"
+    },
+    "type": "open",
+    "name": "Main Hall",
+    "deskCount": 10
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000db"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c4"
+    },
+    "type": "office",
+    "name": "Private Office",
+    "deskCount": 2
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000dc"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c5"
+    },
+    "type": "open",
+    "name": "Creative Floor",
+    "deskCount": 8
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000dd"
+    },
+    "spaceId": {
+      "$oid": "6501000000000000000000c5"
+    },
+    "type": "conference",
+    "name": "Workshop Room",
+    "equipment": "Projector, flip chart, comfortable seating for 10"
+  }
+]

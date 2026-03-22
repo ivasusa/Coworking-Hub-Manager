@@ -1,0 +1,96 @@
+<div class="wrapper">
+
+  <h1 class="naslov">Calendar</h1>
+
+  <div class="selektor-card">
+    <div class="selektor-grid">
+      <div>
+        <label class="forma-label">Space</label>
+        <select [(ngModel)]="selectedSpaceId" (ngModelChange)="onSpaceChange()"
+                class="forma-select">
+          <option value="">— Select space —</option>
+          @for (s of spaces; track s._id) {
+          <option [value]="s._id">{{ s.name }} ({{ s.city }})</option>
+          }
+        </select>
+      </div>
+      <div>
+        <label class="forma-label">Element</label>
+        <select [(ngModel)]="selectedElementId" (ngModelChange)="onElementChange()"
+                [disabled]="!selectedSpaceId"
+                class="forma-select select-disabled">
+          <option value="">— Select element —</option>
+          @for (e of elements; track e._id) {
+          <option [value]="e._id">
+            {{ e.name }} ({{ e.type }}{{ e.deskCount ? ' · ' + e.deskCount + ' desks' : '' }})
+          </option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  @if (selectedElementId) {
+  <div class="kal-card">
+
+    <div class="kal-header">
+      <div>
+        <p class="kal-podnaslov">Availability</p>
+        <p class="kal-ime">
+          {{ calendarData?.space?.name }} · {{ calendarData?.element?.name }}
+          <span class="kal-tip">({{ calendarData?.element?.type }})</span>
+        </p>
+      </div>
+      <div class="week-nav">
+        <button (click)="prevWeek()" class="nav-btn">← Prev</button>
+        <span>{{ weekDays[0] | date:'d MMM' }} – {{ weekDays[6] | date:'d MMM yyyy' }}</span>
+        <button (click)="nextWeek()" class="nav-btn">Next →</button>
+      </div>
+    </div>
+
+    @if (loadingCalendar) {
+    <p class="loading">Loading...</p>
+    }
+
+    @if (!loadingCalendar) {
+    <div class="week-grid">
+      @for (day of weekDays; track day) {
+      <div class="day-col" [class.day-col--past]="isDayPast(day)">
+
+        <div class="day-col-header" [class.day-col-header--past]="isDayPast(day)">
+          <p class="day-weekday">{{ day | date:'EEE' }}</p>
+          <p class="day-number" [class.day-number--past]="isDayPast(day)">{{ day | date:'d' }}</p>
+        </div>
+
+        <div class="dan-rezervacije">
+          @if (reservationsForDay(day).length === 0 && !isDayPast(day)) {
+          <p class="dan-slobodan">free</p>
+          }
+          @for (r of reservationsForDay(day); track r._id) {
+          <div class="chip" [class]="statusClass(r.status)">
+            <p class="chip-ime">{{ r.memberId?.firstName }} {{ r.memberId?.lastName }}</p>
+            <p class="chip-vreme">{{ r.startTime | date:'HH:mm' }} – {{ r.endTime | date:'HH:mm' }}</p>
+            <p class="chip-status">{{ r.status }}</p>
+          </div>
+          }
+        </div>
+
+      </div>
+      }
+    </div>
+
+    <div class="legenda">
+      <span class="leg-stavka"><span class="leg-tacka leg-tacka--aktivan"></span>Active</span>
+      <span class="leg-stavka"><span class="leg-tacka leg-tacka--potvrden"></span>Confirmed</span>
+      <span class="leg-stavka"><span class="leg-tacka leg-tacka--noshow"></span>No-show</span>
+    </div>
+    }
+
+  </div>
+  }
+
+  @if (!selectedElementId) {
+  <p class="loading">Select a space and element to view the calendar.</p>
+  }
+
+</div>

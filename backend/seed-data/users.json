@@ -1,0 +1,171 @@
+[
+  {
+    "_id": {
+      "$oid": "6501000000000000000000b1"
+    },
+    "username": "admin",
+    "password": "$2b$10$26Y1fYONu/QqlUu7fC.H3eok2P0g6HOWLcDQt71hWVs3SuwX93v5K",
+    "firstName": "System",
+    "lastName": "Administrator",
+    "phone": "+381601234567",
+    "email": "admin@coworking.com",
+    "profileImage": "uploads/profiles/default.png",
+    "role": "admin",
+    "status": "active",
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.275Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000b2"
+    },
+    "username": "john.manager",
+    "password": "$2b$10$T7pSG6NnnzOFYTQoa8feyewuB7/EJFEOCFbguIznNjdJ7LG4u5zPq",
+    "firstName": "John",
+    "lastName": "Smith",
+    "phone": "+381611234567",
+    "email": "john.smith@techspace.com",
+    "profileImage": "uploads/profiles/default.png",
+    "role": "manager",
+    "status": "active",
+    "companyId": {
+      "$oid": "6501000000000000000000a1"
+    },
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000b3"
+    },
+    "username": "sarah.manager",
+    "password": "$2b$10$T7pSG6NnnzOFYTQoa8feyewuB7/EJFEOCFbguIznNjdJ7LG4u5zPq",
+    "firstName": "Sarah",
+    "lastName": "Connor",
+    "phone": "+381621234567",
+    "email": "sarah.connor@techspace.com",
+    "profileImage": "uploads/profiles/default.png",
+    "role": "manager",
+    "status": "active",
+    "companyId": {
+      "$oid": "6501000000000000000000a1"
+    },
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000b4"
+    },
+    "username": "mike.manager",
+    "password": "$2b$10$T7pSG6NnnzOFYTQoa8feyewuB7/EJFEOCFbguIznNjdJ7LG4u5zPq",
+    "firstName": "Mike",
+    "lastName": "Johnson",
+    "phone": "+381631234567",
+    "email": "mike.johnson@workhub.com",
+    "profileImage": "uploads/profiles/default.png",
+    "role": "manager",
+    "status": "active",
+    "companyId": {
+      "$oid": "6501000000000000000000a2"
+    },
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000b5"
+    },
+    "username": "alice",
+    "password": "$2b$10$eYI7pu/UIsZPzJNad5Q4XeDAs.tG7UoftNJ5Qk9yTox6bbxdeelmG",
+    "firstName": "Alice",
+    "lastName": "Williams",
+    "phone": "+381641234567",
+    "email": "alice@email.com",
+    "profileImage": "uploads/profiles/default.png",
+    "role": "member",
+    "status": "active",
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000b6"
+    },
+    "username": "bob",
+    "password": "$2b$10$eYI7pu/UIsZPzJNad5Q4XeDAs.tG7UoftNJ5Qk9yTox6bbxdeelmG",
+    "firstName": "Bob",
+    "lastName": "Martinez",
+    "phone": "+381651234567",
+    "email": "bob@email.com",
+    "profileImage": "uploads/profiles/default.png",
+    "role": "member",
+    "status": "active",
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000b7"
+    },
+    "username": "charlie",
+    "password": "$2b$10$eYI7pu/UIsZPzJNad5Q4XeDAs.tG7UoftNJ5Qk9yTox6bbxdeelmG",
+    "firstName": "Charlie",
+    "lastName": "Brown",
+    "phone": "+381661234567",
+    "email": "charlie@email.com",
+    "profileImage": "uploads/profiles/default.png",
+    "role": "member",
+    "status": "active",
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6501000000000000000000b8"
+    },
+    "username": "pending.user",
+    "password": "$2b$10$eYI7pu/UIsZPzJNad5Q4XeDAs.tG7UoftNJ5Qk9yTox6bbxdeelmG",
+    "firstName": "Pending",
+    "lastName": "User",
+    "phone": "+381671234567",
+    "email": "pending@email.com",
+    "profileImage": "uploads/profiles/default.png",
+    "role": "member",
+    "status": "pending",
+    "createdAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    },
+    "updatedAt": {
+      "$date": "2026-03-22T11:14:03.276Z"
+    }
+  }
+]

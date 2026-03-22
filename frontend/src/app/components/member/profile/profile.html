@@ -1,0 +1,134 @@
+<div class="profil-wrapper">
+
+  <div class="profil-card">
+    <div class="profil-header">
+      <div class="profil-identitet">
+        <img [src]="profileImageUrl" alt="Profile" class="profil-avatar" />
+        <div>
+          <h1 class="profil-ime">{{ user?.firstName }} {{ user?.lastName }}</h1>
+          <p class="profil-korisnicko">@{{ user?.username }}</p>
+          <span class="profil-role-badge">Member</span>
+        </div>
+      </div>
+      @if (!editMode) {
+      <button (click)="editMode = true" class="link-btn">Edit</button>
+      }
+      @if (editMode) {
+      <button (click)="editMode = false" class="link-btn link-btn--gray">Cancel</button>
+      }
+    </div>
+
+    @if (message) {
+    <div class="alert alert--success">{{ message }}</div>
+    }
+    @if (error) {
+    <div class="alert alert--error">{{ error }}</div>
+    }
+
+    @if (!editMode && user) {
+    <div class="info-grid">
+      <div class="info-cell">
+        <span class="info-label">First name</span>
+        <span class="info-val">{{ user.firstName }}</span>
+      </div>
+      <div class="info-cell">
+        <span class="info-label">Last name</span>
+        <span class="info-val">{{ user.lastName }}</span>
+      </div>
+      <div class="info-cell">
+        <span class="info-label">Email</span>
+        <span class="info-val">{{ user.email }}</span>
+      </div>
+      <div class="info-cell">
+        <span class="info-label">Phone</span>
+        <span class="info-val">{{ user.phone }}</span>
+      </div>
+    </div>
+    }
+
+    @if (editMode) {
+    <form [formGroup]="form" (ngSubmit)="saveProfile()" novalidate>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label">First name</label>
+          <input formControlName="firstName" type="text" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last name</label>
+          <input formControlName="lastName" type="text" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input formControlName="email" type="email" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input formControlName="phone" type="tel" placeholder="06xxxxxxxx" class="form-input" />
+          @if (form.get('phone')?.invalid && form.get('phone')?.touched) {
+          <p class="form-error">Phone must start with 06 and have 9 or 10 digits</p>
+          }
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">
+          Change profile picture <span class="form-label-hint">(100×100 – 300×300 px, JPG/PNG)</span>
+        </label>
+        <input type="file" accept=".jpg,.jpeg,.png" (change)="onFileChange($event)" class="file-input" />
+        @if (fileError) {
+        <p class="form-error">{{ fileError }}</p>
+        }
+      </div>
+      <div class="forma-akcije">
+        <button type="submit" [disabled]="saving" class="btn-primary">
+          {{ saving ? 'Saving...' : 'Save changes' }}
+        </button>
+        <button type="button" (click)="editMode = false" class="btn-secondary">Cancel</button>
+      </div>
+    </form>
+    }
+  </div>
+
+  <div class="profil-card">
+    <h2 class="section-title">My Reservations</h2>
+
+    @if (reservations.length === 0) {
+    <p class="prazno">No reservations yet.</p>
+    }
+
+    @if (reservations.length > 0) {
+    <div class="tabla-wrapper">
+      <table class="tabla">
+        <thead class="thead">
+          <tr>
+            <th class="th th-sortable" (click)="sortBy('spaceName')">Space {{ sortIndicator('spaceName') }}</th>
+            <th class="th th-sortable" (click)="sortBy('city')">City {{ sortIndicator('city') }}</th>
+            <th class="th th-sortable" (click)="sortBy('startTime')">From {{ sortIndicator('startTime') }}</th>
+            <th class="th th-sortable" (click)="sortBy('endTime')">To {{ sortIndicator('endTime') }}</th>
+            <th class="th">Status</th>
+            <th class="th"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (r of reservations; track r._id) {
+          <tr class="red">
+            <td class="td td-bold">{{ r.spaceId?.name }}</td>
+            <td class="td">{{ r.spaceId?.city }}</td>
+            <td class="td">{{ r.startTime | date:'dd.MM.yyyy HH:mm' }}</td>
+            <td class="td">{{ r.endTime | date:'dd.MM.yyyy HH:mm' }}</td>
+            <td class="td">
+              <span class="status-badge" [class]="'status-badge status-' + r.status">{{ r.status }}</span>
+            </td>
+            <td class="td">
+              @if (canCancel(r)) {
+              <button (click)="cancelReservation(r._id)" class="btn-cancel">Cancel</button>
+              }
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+  </div>
+
+</div>

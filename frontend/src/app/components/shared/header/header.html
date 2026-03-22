@@ -1,0 +1,36 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a routerLink="/" class="header-logo">Coworking Hub</a>
+
+    <nav class="header-nav">
+      @if (!(auth.currentUser$ | async)) {
+        <a routerLink="/" routerLinkActive="nav-link--active" [routerLinkActiveOptions]="{exact:true}" class="nav-link">Home</a>
+        <a routerLink="/login" class="nav-link">Login</a>
+        <a routerLink="/register" class="nav-link nav-link--btn">Register</a>
+      }
+
+      @if (auth.currentUser$ | async; as user) {
+        @if (user.role === 'member') {
+          <a routerLink="/member/profile" class="nav-link">Profile</a>
+          <a routerLink="/search" class="nav-link">Search</a>
+        }
+        @if (user.role === 'manager') {
+          <a routerLink="/manager/profile" class="nav-link">Profile</a>
+          <a routerLink="/manager/spaces" class="nav-link">My Spaces</a>
+          <a routerLink="/manager/reservations" class="nav-link">Reservations</a>
+          <a routerLink="/manager/calendar" class="nav-link">Calendar</a>
+          <a routerLink="/manager/report" class="nav-link">Report</a>
+        }
+        @if (user.role === 'admin') {
+          <a routerLink="/admin/dashboard" class="nav-link">Dashboard</a>
+        }
+
+        <div class="user-section">
+          <img [src]="imageUrl" alt="avatar" class="user-avatar" />
+          <span class="user-name">{{ user.username }}</span>
+          <button (click)="logout()" class="logout-btn">Logout</button>
+        </div>
+      }
+    </nav>
+  </div>
+</header>

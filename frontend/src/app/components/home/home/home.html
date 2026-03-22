@@ -1,0 +1,127 @@
+<div class="page-wrapper">
+
+  <div class="hero-banner">
+    <h1 class="hero-title">Find your perfect workspace</h1>
+    <p class="hero-subtitle">Discover coworking spaces, offices and meeting rooms</p>
+    <div class="hero-badge">
+      <span class="hero-count">{{ totalSpaces }}</span>
+      <span class="hero-badge-label"> registered coworking spaces</span>
+    </div>
+  </div>
+
+  <h2 class="section-title">Top 5 most liked spaces</h2>
+  <div class="top5-grid">
+    @for (space of top5; track space._id; let i = $index) {
+    <div class="space-card">
+      <div class="card-image-wrapper">
+        <img [src]="imageUrl(space.mainImage)" [alt]="space.name" class="card-image" />
+        <span class="card-rank">#{{ i + 1 }}</span>
+      </div>
+      <h3 class="card-name">{{ space.name }}</h3>
+      <p class="card-city">{{ space.city }}</p>
+      <p class="card-likes">👍 {{ space.totalLikes }} &nbsp; 👎 {{ space.totalDislikes }}</p>
+      <a [routerLink]="['/spaces', space._id]" class="card-details-link">Details</a>
+    </div>
+    }
+  </div>
+
+  <div class="search-panel">
+    <h2 class="section-title">Search spaces</h2>
+    <form [formGroup]="form" (ngSubmit)="search()">
+      <div class="form-group">
+        <label class="form-label">Space name</label>
+        <input formControlName="name" type="text" placeholder="Search by name..."
+               class="form-input" />
+      </div>
+
+      @if (cities.length) {
+      <div class="form-group">
+        <label class="form-label">Cities (select one or more)</label>
+        <div class="city-chips">
+          @for (city of cities; track city) {
+          <button type="button" (click)="toggleCity(city)"
+                  [class.city-chip--active]="isCitySelected(city)"
+                  [class.city-chip--inactive]="!isCitySelected(city)"
+                  class="city-chip">
+            {{ city }}
+          </button>
+          }
+        </div>
+      </div>
+      }
+
+      <div class="form-group">
+        <label class="form-label">Space type</label>
+        <div class="type-options">
+          <label class="type-option" [class.opacity-40]="isTypeDisabled('open')">
+            <input type="checkbox" [checked]="selectedType === 'open'" [disabled]="isTypeDisabled('open')"
+                   (change)="selectType('open')" />
+            Open space desk
+          </label>
+          <label class="type-option" [class.opacity-40]="isTypeDisabled('office')">
+            <input type="checkbox" [checked]="selectedType === 'office'" [disabled]="isTypeDisabled('office')"
+                   (change)="selectType('office')" />
+            Separate office
+          </label>
+          <label class="type-option" [class.opacity-40]="isTypeDisabled('conference')">
+            <input type="checkbox" [checked]="selectedType === 'conference'" [disabled]="isTypeDisabled('conference')"
+                   (change)="selectType('conference')" />
+            Conference room (10–12 people)
+          </label>
+        </div>
+        @if (selectedType === 'office') {
+        <div class="office-size-field">
+          <label class="form-label">Number of desks needed</label>
+          <input formControlName="officeSize" type="number" min="1" noNegative placeholder="e.g. 4"
+                 class="form-input form-input--small" />
+        </div>
+        }
+      </div>
+
+      <button type="submit" class="btn-primary">Search</button>
+    </form>
+  </div>
+
+  @if (searched) {
+  <div>
+    @if (searchResults?.length === 0) {
+    <p class="empty-message">No spaces found.</p>
+    }
+
+    @if (searchResults && searchResults.length > 0) {
+    <p class="results-count">{{ searchResults.length }} result(s)</p>
+    <div class="results-table-wrapper">
+      <table class="results-table">
+        <thead class="results-thead">
+          <tr>
+            <th class="th-sortable" (click)="sortBy('name')">
+              Name <span class="sort-icon">{{ sortField === 'name' ? (sortDir === 'asc' ? '▲' : '▼') : '↕' }}</span>
+            </th>
+            <th class="th-sortable" (click)="sortBy('city')">
+              City <span class="sort-icon">{{ sortField === 'city' ? (sortDir === 'asc' ? '▲' : '▼') : '↕' }}</span>
+            </th>
+            <th class="th-col">Address</th>
+            <th class="th-col">Likes</th>
+            <th class="th-col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (space of searchResults; track space._id) {
+          <tr class="result-row">
+            <td class="td-name">{{ space.name }}</td>
+              <td class="td-cell">{{ space.city }}</td>
+                <td class="td-muted">{{ space.address }}</td>
+                <td class="td-likes">{{ space.totalLikes }}</td>
+                      <td class="td-cell">
+              <button (click)="goToDetails(space._id)" class="btn-details">DETAILS</button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+  </div>
+  }
+
+</div>

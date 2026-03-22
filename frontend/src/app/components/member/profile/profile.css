@@ -1,0 +1,209 @@
+.profil-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.profil-card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+}
+
+.profil-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.profil-identitet {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profil-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+}
+
+.profil-ime {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 0.2rem;
+}
+
+.profil-korisnicko {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  margin: 0 0 0.4rem;
+}
+
+.profil-role-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-accent);
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+.link-btn:hover { text-decoration: underline; }
+
+.link-btn--gray { color: var(--color-muted); }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.info-cell {
+  background: var(--color-bg);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.info-val {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.forma-akcije {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0 0 1rem;
+}
+
+.prazno {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.tabla-wrapper {
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.thead {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+.th-sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.th-sortable:hover { color: var(--color-primary); }
+
+.red {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.red:hover { background: var(--color-bg); }
+
+.td {
+  padding: 0.75rem 1rem;
+  color: #475569;
+}
+
+.td-bold {
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+}
+
+.status-active {
+  background-color: #f0fdf4;
+  color: #15803d;
+}
+
+.status-confirmed {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.status-cancelled,
+.status-no_show {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.btn-cancel {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-error);
+  border: 1px solid var(--color-error-border);
+  background: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-cancel:hover {
+  background-color: var(--color-error-bg);
+}

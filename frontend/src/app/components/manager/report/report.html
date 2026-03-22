@@ -1,0 +1,80 @@
+<div class="wrapper">
+  <h1 class="naslov">Monthly Report</h1>
+  <div class="kontrole-card">
+    <div class="kontrole-red">
+      <div>
+        <label class="forma-label">Month</label>
+        <input type="month" [(ngModel)]="selectedMonth" [max]="maxMonth" class="forma-input" />
+      </div>
+      <button (click)="generate()" [disabled]="loading" class="btn-dark">
+        {{ loading ? 'Loading...' : 'Generate report' }}
+      </button>
+      @if (reportData) {
+      <button (click)="printPdf()" class="btn-primary">
+        Download PDF
+      </button>
+      }
+    </div>
+    @if (error) {
+    <p class="greska-msg">{{ error }}</p>
+    }
+  </div>
+
+  @if (reportData) {
+  <div class="izvestaj-card">
+    <div class="izvestaj-header">
+      <h2 class="izvestaj-mesec">{{ reportData.month }}</h2>
+      <span class="izvestaj-meta">{{ reportData.daysInMonth }} days · 08:00–20:00 working hours</span>
+    </div>
+
+    @for (space of reportData.spaces; track space.name) {
+    <div class="prostor-blok">
+      <div class="prostor-blok-header">
+        <p class="prostor-blok-ime">{{ space.name }}
+          <span class="prostor-blok-grad">{{ space.city }}</span>
+        </p>
+      </div>
+
+      <table class="tabla">
+        <thead>
+          <tr class="thead-red">
+            <th class="th-levo">Element</th>
+            <th class="th-levo">Type</th>
+            <th class="th-desno">Booked</th>
+            <th class="th-desno">Capacity</th>
+            <th class="th-util">Utilization</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (el of space.elements; track el.name) {
+          <tr class="red">
+            <td class="td-name">{{ el.name }}</td>
+            <td class="td-tip">
+              {{ el.type }}{{ el.deskCount ? ' · ' + el.deskCount + ' desks' : '' }}
+            </td>
+            <td class="td-desno">{{ el.bookedHours | number:'1.1-1' }} h</td>
+            <td class="td-desno td-sivkasto">{{ el.capacityHours | number:'1.1-1' }} h</td>
+            <td class="td-util">
+              <div class="util-wrapper">
+                <div class="util-traka">
+                  <div class="util-fill"
+                       [class]="utilizationColor(el.utilization)"
+                       [style.width.%]="el.utilization"></div>
+                </div>
+                <span class="util-proc">{{ el.utilization | number:'1.1-1' }}%</span>
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    }
+
+    @if (reportData.spaces.length === 0) {
+    <p class="prazno">No spaces found.</p>
+    }
+  </div>
+  }
+
+</div>
